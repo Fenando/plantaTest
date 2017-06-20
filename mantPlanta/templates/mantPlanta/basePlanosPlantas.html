@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+
+    <script src="/static/mantPlanta/funciones.js"></script>
+    <script src="{% static "mantPlanta/jquery.js" %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+      <!-- Javascript -->
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <br>
+    <br>
+<div align="center" class = "container">
+<a href="{% url  'menup' %}" class="btn btn-primary">Volver Menu principal</a>
+{% block sp1 %}{% endblock %}
+</div>
+    <br>
+    <br>
+
+
+<div align="center">
+<!--<img src="{% static "imagenes/tri.jpg" %}" usemap="#mapa_zonas" class="text-center" ></img>
+<map name="mapa_zonas">
+
+
+</map>-->
+<!--<ul id="equipos">
+    <li id="q10" onclick="change()"></li>
+    <li id="q11" onclick=""></li>
+</ul>-->
+
+{% block svg %}{% endblock %}
+
+<div class = "container">
+<a href="{% url  'menup' %}" class="btn btn-primary">Volver Menu principal</a>
+{% block sp %}{% endblock %}
+</div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
+
+
+
+
+
+</body>
+</html>
+<!--<style>
+    ul#equipos {
+	list-style: none;
+	background: url("{% static "imagenes/tri.jpg" %}") no-repeat 0 0;
+	position: relative;
+	width: 800px;
+	height: 1200px;
+	margin: 0;
+
+	padding: 0;
+}
+ul#equipos li {
+	border: 1px solid #000;
+	position: absolute;
+}
+#q10 {
+	width: 45px;
+	height: 35px;
+	top: 1040px;
+	left: 690px;
+}
+
+=
+</style>-->
+
+<script type="text/javascript">
+$(document).tooltip({track: true});
+
+var creadas = new Set();
+function over(ew) {
+
+            var miElement = document.getElementById(ew);
+        miElement.style = "opacity:1;fill:#00FF00;fill-rule:evenodd;stroke:#00FF00;stroke-width:0.89435452px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1";
+
+}
+
+
+function out(ew){
+     var miElement = document.getElementById(ew)
+     miElement.style = "fill:#000000;fill-opacity:0.00392157;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.00392157"
+
+
+}
+function cambios(ex, n){
+    var mi = ex
+    var nu = n
+    console.info(ex+n)
+    mi.onclick = function(){
+        ur = n
+        var url = '/reportando/'+ur
+        document.location = url;
+    }
+    }
+
+   function ccx(nombre){
+        var equipo = nombre
+
+        var urlr = '/'+equipo+'/'
+        document.location = urlr;
+    }
+
+</script>
+

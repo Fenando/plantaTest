@@ -1,0 +1,38 @@
+{% extends 'mantPlanta/base.html' %}
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Información Equipo</title>
+
+
+</head>
+<body>
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}-->
+
+    {% block content %}
+
+<div class="jumbotron" style="
+border: 1px solid #eaeaea;
+border-radius: 1px;
+overflow: hidden;
+width: 35em;
+min-width: 350px;
+margin: 5px auto;
+position: relative;
+
+padding: 0;">
+
+    <h3 class="alert alert-success text-center">{{tipo.nombre}}</h3>
+  <h2 class="text-center">{{tipo.info}}</h2>
+    <p class="text-center">{{tipo.info.info}}</p>
+</div>
+    {% endblock content %}
+
+<!--
+</body>
+</html>
+-->

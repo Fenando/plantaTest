@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud creada a equipos {{eName}}</title>
+    {% load static %}
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+
+</head>
+<body>
+
+    <h1>Respuesta Solicitud mantención equipo {{eName}}</h1>
+      <h3 class="text-justify">
+
+          La solicitud de mantención del equipo <mark>{{eName}}</mark> en la fecha: {{fecha}} correspondiente al número de OT: {{nOt}} fue: </h3>
+
+          {% if acciones %}
+          <span>Aprobada</span>
+          {% else %}
+          <span>Rechazada</span>
+          {% endif %}
+    <span>Con los siguiente comentarios: {{com}}</span>
+
+    {% if acciones %}
+<h3>Si desea agregar otro comentario por favor ingresar a:</h3>
+
+<h2><a class="btn btn-primary btn-lg" href="{{link}}" role="button">Ir a la Pagina</a></h2>
+{% endif %}
+</body>
+</html>
+
+

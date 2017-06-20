@@ -1,0 +1,141 @@
+{% extends 'mantPlanta/base.html' %}
+
+{% block content %}
+
+   {% load static %}
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="jumbotron" style="
+border: 1px solid #eaeaea;
+border-radius: 1px;
+overflow: hidden;
+width: 60em;
+min-width: 350px;
+margin: 5px auto;
+position: relative;
+
+padding: 0;">
+
+    <h2 class="alert alert-success text-center text-capitalize">Nombre: {{tipo.nombre}}</h2>
+  <h1 class="text-center">Equipo: {{tipo.info}}</h1>
+    <ul>
+<dl>
+  <dt><h2>Marca:</h2></dt>
+    <dd><p>{{tipo.info.marca}}</p></dd>
+      <dt><h2>Tensión:</h2></dt>
+    <dd><p>{{tipo.info.tension}} V</p></dd>
+      <dt><h2>Información:</h2></dt>
+    <dd><p>{{tipo.info.info}}</p></dd>
+
+ <dt><h2>Historicos:</h2></dt>
+
+
+        {% for i in mant %}
+    <ul class="list-group">
+        <li class="list-group-item">Número de OT : {{i.numero_ot}}</li>
+
+        <li class="list-group-item">Causa : {{i.causa}}</li>
+
+        <li class="list-group-item"> Solicitado por : {{i.solicitante}}</li>
+
+    <li class="list-group-item"> Fecha Solicitud:  {{i.fecha}} </li>
+        {% if i.aprobada %}
+    <li class="list-group-item"> Solicitud :  Aprobada </li>
+      <li class="list-group-item"> Fecha Aprobación :  {{i.fecha_aprec}} </li>
+
+        {% elif i.rechazada %}
+    <li class="list-group-item"> Solicitud :  Rechazada </li>
+         <li class="list-group-item"> Fecha Rechazo :  {{i.fecha_aprec}} </li>
+        {% else %}
+        <li class="list-group-item"> Solicitud :  Sin respuesta </li>
+        {% endif %}
+
+
+<li class="list-group-item"> Comentarios :
+
+  {% for x in com %}
+        {% for c in x%}
+        {% if c.mantencion.id == i.id %}
+                <div>
+
+
+                    {{c.comentario}}
+    {{c.fecha}}
+        <p>-------</p>
+
+  </div>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+        </li>
+        {% if i.realizada %}
+
+    <li class="list-group-item"> realizada :  Si </li>
+
+            {% for ac in a  %}
+                {% if i.id == ac.mantencion.id %}
+        <li class="list-group-item"> Trabajador :  {{ac.realizador}} </li>
+        <li class="list-group-item"> Trabajos :  {{ac.accion}} </li>
+        <li class="list-group-item"> Fecha de ejecucción :  {{ac.fecha}} </li>
+        <li class="list-group-item">
+            <div id="accordion">
+
+  <h3>Imagen del Trabajo: </h3>
+  <div>
+    <p>
+
+    <img  src="{{ MEDIA_URL }}/media/{{ac.imagen}}">
+    </p>
+  </div>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+            <li class="list-group-item"> realizada :  No </li>
+
+        {% endif %}
+    </ul>
+    {% endfor %}
+</dl>
+
+<br>
+    <br>
+</ul>
+<div align="center">
+<h3>Imagen del refencial: </h3>
+    <img  src="{{ MEDIA_URL }}/media/{{imagen}}">
+    <br>
+    <br>
+</div>
+    <br>
+    <br>
+
+    <div align="center" class="container">
+    <button type="button" class="btn btn-primary" target="_blanck" onclick="history.back()">Volver</button>
+    </div>
+    <br>
+<br>
+    <br>
+</div>
+
+<script>
+        function changes(eq){
+        var e = eq
+
+
+        var url = '/solicitud/'+e
+        document.location = url;
+         }
+
+  $( function() {
+    $( "#accordion" ).accordion({"active": false,"collapsible": true});
+  } );
+
+ $( function() {
+    $( "#accordio" ).accordion({"active": false,"collapsible": true});
+  } );
+
+</script>
+    {% endblock content %}
+

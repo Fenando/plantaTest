@@ -1,0 +1,63 @@
+{% extends 'mantPlanta/base.html' %}
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Reportes equipos</title>
+    {% load static %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    &lt;!&ndash; Optional theme &ndash;&gt;
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    &lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>-->
+
+    {% block content %}
+       <h2>Menu Reporte</h2>
+<div class="btn-group btn-group-justified" role="group" >
+   <div class="btn-group" role="group" >
+    <button target="_blank" type="button"  class="btn btn-primary"  onclick="reportar('{{ei}}')" >Reporte</button>
+</div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<div align="center">
+ <a href="{% url  'itr' %}" class="btn btn-primary">Volver Trozado</a>
+ </div>
+    <!--<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>-->
+<!--<div class="jumbotron">
+  <h3 class="alert alert-success text-center">INFORMACIÓN</h3>
+  <p>Ejemplo de reporte por equipo<span class="label label-primary">Trozado</span></p>
+
+</div>-->
+<script>
+
+    var aReporte = document.getElementById('id_equipos');
+
+
+    function reportar(e){
+
+        var url = '/reporte/' + e;
+        window.open(url)
+
+    }
+
+</script>
+
+    {% endblock content %}
+
+
+

@@ -1,0 +1,90 @@
+{% extends 'mantPlanta/base.html' %}
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Principal</title>
+</head>
+<body>
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+
+<div class="container">
+  <h2>Menu principal</h2>
+
+  <div class="btn-group btn-group-justified">
+    <a href="{% url  'itr' %}" class="btn btn-primary">Trozado</a>
+    <a href="#" class="btn btn-primary">Empaque</a>
+    <a href="#" class="btn btn-primary">Procesos Posteriores</a>
+  </div>
+</div>
+
+
+
+</body>
+</html>-->
+
+
+    {% block content %}
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+      $( function() {
+
+        $( "#datepicker" ).datepicker({dateFormat:'yy-mm-dd'});
+        $( "#datepickerh" ).datepicker({dateFormat:'yy-mm-dd'});
+  } );
+
+</script>
+
+       <h2>Menu Exteriores</h2>
+
+  <div class="btn-group btn-group-justified">
+    <a href="{% url  'faena_exteriores' %}" class="btn btn-primary">Faenadora</a>
+
+    <a href="{% url  'cecinas_exteriores' %}" class="btn btn-primary">Cecinas</a>
+    <a href="{% url  'subproductos_exteriores' %}" class="btn btn-primary">Subproductos</a>
+
+  </div>
+<br>
+  <div class="btn-group btn-group-justified">
+
+    <a href="{% url  'bodega_uno_exteriores' %}" class="btn btn-primary">Bodega Uno</a>
+    <a href="{% url  'bodega_dos_exteriores' %}" class="btn btn-primary">Bodega Dos</a>
+    <a href="{% url  'bodega_tres_exteriores' %}" class="btn btn-primary">Bodega Tres</a>
+  </div>
+<br>
+  <div class="btn-group btn-group-justified">
+
+    <a href="{% url  'ingreso_peatonal' %}" class="btn btn-primary">Ingreso peatonal</a>
+    <a href="{% url  'ingreso_vehicular' %}" class="btn btn-primary">Ingreso Vehicular</a>
+    <a href="{% url  'gerencia_rrhh' %}" class="btn btn-primary">Gerencia - RRHH</a>
+
+  </div>
+<br>
+<br>
+<a href="{% url  'menup' %}" class="btn btn-primary">Volver Menu principal</a>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+    {% endblock content %}
+
+.flecha-up {
+    width:0px;
+    height:0px;
+    border-left:25px solid transparent; /* izquierda flecha */
+    border-right:25px solid transparent; /* derecha flecha */
+    border-bottom:25px solid #0A0A0A; /* base flecha y color*/
+    font-size:0px;
+    line-height:0px;
+ }
+

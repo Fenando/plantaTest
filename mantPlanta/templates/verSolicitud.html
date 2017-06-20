@@ -1,0 +1,26 @@
+
+{% extends "mantPlanta/baseSolicitud.html" %}
+
+{% block title %}Ver solicitud{% endblock %}
+
+ {%block h1%} Ver solicitud{% endblock %}
+
+            {% block form %}
+                {% endblock %}
+
+
+
+
+{% block ext %}
+
+        <div class="form-actions">
+
+
+            <button type="button" class="btn btn-primary" target="_blanck" onclick="reportar('{{mant.equipos.nombre}}')">Información</button>
+            <a href= "{% url mant.equipos.area.nombre %}" class="btn btn-primary">Volver a plano</a>
+        </div>
+{% endblock %}
+
+
+
+

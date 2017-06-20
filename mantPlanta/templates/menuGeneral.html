@@ -1,0 +1,61 @@
+{% extends 'mantPlanta/base.html' %}
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Principal</title>
+</head>
+<body>
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+
+<div class="container">
+  <h2>Menu principal</h2>
+
+  <div class="btn-group btn-group-justified">
+    <a href="{% url  'itr' %}" class="btn btn-primary">Trozado</a>
+    <a href="#" class="btn btn-primary">Empaque</a>
+    <a href="#" class="btn btn-primary">Procesos Posteriores</a>
+  </div>
+</div>
+
+
+
+</body>
+</html>-->
+
+
+    {% block content %}
+       <h2>Menu General</h2>
+
+  <div class="btn-group btn-group-justified">
+    <a href="{% url  'menu' %}" class="btn btn-primary">Alumbrados</a>
+
+    <a href="#" class="btn btn-primary">Motores</a>
+    <a href="#" class="btn btn-primary">Alumbrado de emergencia</a>
+    <a href="#" class="btn btn-primary">Evaporadores</a>
+
+  </div>
+ <h1><span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span></h1>
+<div class="jumbotron">
+  <h3 class="alert alert-success text-center">INFORMACIÓN</h3>
+  <p>Para continuar con la demostración por favor dar click en el botón <span class="label label-primary">Trozado</span></p>
+
+</div>
+
+    {% endblock content %}
+
+.flecha-up {
+    width:0px;
+    height:0px;
+    border-left:25px solid transparent; /* izquierda flecha */
+    border-right:25px solid transparent; /* derecha flecha */
+    border-bottom:25px solid #0A0A0A; /* base flecha y color*/
+    font-size:0px;
+    line-height:0px;
+ }
+

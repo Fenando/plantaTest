@@ -1,0 +1,90 @@
+
+{% extends "mantPlanta/baseSolicitud.html" %}
+
+{% block title %}cerrar solicitud{% endblock %}
+
+ {%block h1%}Solicitud de mantención{% endblock %}
+
+            {% block form %}
+                {% endblock %}
+{% block cerrar %}
+                {% if form.errors %}
+            <div class="alert alert-danger text-center" role="alert">
+                <h4 class="text-justify">
+                Por favor corrige:
+                </h4>
+                <h5 class="text-justify">
+                {{form.errors}}
+                </h5>
+            </div>
+
+            {% endif %}
+<h1 class="text-center">Cerrar Mantención</h1>
+
+<form enctype="multipart/form-data" method="post" onsubmit="return checkSubmit();"> {% csrf_token %}
+    <div class="form-group" style="max-width:800px;margin: 0 auto">
+        <fieldset>
+
+
+            <table class="table table-bordered ">
+
+
+
+
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_solicitante">Ejecutante:</label>
+                    </td>
+
+                    <td for="id_solicitante" class="bg-info" placeholder="Nombre trabajador" >{{form.realizador}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_causa">Acciones:</label>
+                    </td>
+
+                    <td for="id_causa" class="bg-info" placeholder="Trabajo realizado">{{form.accion}}</td>
+                </tr>
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_fecha">Fecha:</label>
+                    </td>
+
+                    <td for="id_fecha" class="bg-info" placeholder="fecha de realización">{{form.fechac}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_imagen">Imagen:</label>
+                    </td>
+
+                    <td for="id_imagen" class="bg-info" placeholder="imagen">{{form.imagenc}}</td>
+                </tr>
+
+
+
+            </table>
+        </fieldset>
+        <div class="form-actions">
+
+            <button type="submit" class="btn btn-primary" id="botonS">Enviar</button>
+            <button type="button" class="btn btn-primary" target="_blanck" onclick="reportar('{{mant.equipos.nombre}}')" id="botonI">Información</button>
+            <a href= "{% url mant.equipos.area.nombre %}" class="btn btn-primary" id="botonV">Volver a plano</a>
+        </div>
+    </div>
+ </form>
+<br>
+<br>
+<br>
+
+{% endblock %}
+
+        {% block ext %}
+
+
+{% endblock %}
+
+
+
+

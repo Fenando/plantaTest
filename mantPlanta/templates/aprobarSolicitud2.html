@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de Mantencion</title>
+    {% load static %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static "mantPlanta/jquery-ui.css" %}">
+    <script src="{% static " mantPlanta/jquery.js" %}" ></script>
+    <script src="{% static "mantPlanta/jquery-ui.js" %}"></script>
+
+
+</head>
+<body>
+
+<h1 class="text-center">Aprobación de Solicitud</h1>
+
+
+
+<form method="post"> {% csrf_token %}
+    <div class="form-group" style="max-width:800px;margin: 0 auto">
+        <fieldset>
+
+
+            {{form.as_table}}
+
+            </table>
+
+        </fieldset>
+
+    </div>
+</form>
+                    <div class="form-actions">
+
+            <button type="submit" class="btn btn-primary" onclick="uxl('{{ei}}')" id="botonasS">Enviar</button>
+            <button type="button" class="btn btn-primary" target="_blanck" onclick="reportar('{{ei}}')">Información</button>
+
+        </div>
+
+</body>
+</html>
+<script>
+    function reportar(e){
+
+        var url = '/informacion/' + e;
+        document.location = url;
+
+    }
+
+        function uxl(e){
+        var botonS = document.getElementById('botonS');
+        botonS.disabled = true
+        }
+
+</script>
+
+
+
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud creada a equipos {{eName}}</title>
+    {% load static %}
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+
+</head>
+<body>
+
+    <h1>Nuevo comentario a Solicitud mantención equipo {{eName}}</h1>
+      <h3 class="text-justify">
+          La solicitud de mantención del equipo <mark>{{eName}}</mark> correspondiente al número de OT: {{nOt}}</h3>
+    <h3> Se le ha agregado el siguientes comentario: {{com.comentario}} </h3>
+        <h3> en la fecha {{com.fecha}}</h3>
+<h3>Si desea agregar otro comentario por favor ingresar a:</h3>
+<h2><a class="btn btn-primary btn-lg" href="{{link}}" role="button">Ir a la Pagina</a></h2>
+
+</body>
+</html>
+
+

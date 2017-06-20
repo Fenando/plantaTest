@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de Mantencion</title>
+    {% load static %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static "mantPlanta/jquery-ui.css" %}">
+    <script src="{% static " mantPlanta/jquery.js" %}" ></script>
+    <script src="{% static "mantPlanta/jquery-ui.js" %}"></script>
+
+<script>
+ var x = document.location.href;
+var mid = {{mant.id}};
+var lp = location.pathname;
+
+
+ window.onbeforeunload = function () {
+ console.info('3')
+  $.ajax({
+        url: '/correoApro/',
+        type: "GET",
+        data: {'u': x, 'mid':mid},
+        success: function (response) {
+            console.log('work')
+          }
+
+      });
+};
+        var s = 0;
+
+        function uxl(e){
+        console.info('2')
+        var x = document.location.href;
+
+        var a = document.getElementById('urls');
+        a.value = x;
+
+    }
+
+
+
+    function reportar(e){
+
+        var url = '/informacion/' + e;
+        document.location = url;
+
+    }
+
+        function checkSubmit() {
+        console.info('1')
+        document.getElementById("botonS").value = "Enviando...";
+        document.getElementById("botonS").disabled = true;
+        document.getElementById("botonI").disabled = true;
+
+        return true;
+    }
+      $( function() {
+    $( "#accordion" ).accordion({"active": false,"collapsible": true});
+    $("#botonS").click(function () {
+        console.info(("#id_Ots").value);
+        alert($("#id_Ots").val());
+         alert($('input:radio[name=nada]:checked').val())
+        if($("#id_Ots").val == undefined){
+            alert('caca');
+        }
+        if($("#id_nada_0").is(':checked')) {
+            alert("Está activado");
+        } else {
+            alert("No está activado");
+        }
+        if($("#formulario input[name='nada']:radio").is(':checked')){
+            alert("Está activadodadadda");
+        } else {
+            alert("No está activadodadasdas");
+        }
+        $("#formulario").submit();
+        alert($("#formulario")is(':submit'));
+        if ((($("#id_nada_0").val() == 'True') || ($("#id_nada_1").val() == 'True'))&&($("#id_Ots").val() != undefined)){
+        console.info('working');
+        window.onbeforeunload = null;
+        }
+  } );
+
+
+});
+</script>
+</head>
+<body>
+
+<h1 class="text-center">Aprobación de Solicitud</h1>
+
+
+
+<form id="formulario" method="post" action="" onsubmit="return checkSubmit();"> {% csrf_token %}
+    <div class="form-group" style="max-width:800px;margin: 0 auto">
+        <fieldset>
+
+
+            <table class="table table-bordered ">
+
+
+                {% if form.errors %}
+            <div class="alert alert-danger text-center" role="alert">
+                <h4 class="text-justify">
+                Por favor corrige:
+                </h4>
+                <h5 class="text-justify">
+                {{form.errors}}
+                </h5>
+            </div>
+
+            {% endif %}
+                <tr class="bg-info">
+
+                    <td class="bg-primary">
+                        <label>Equipos:</label>
+                    </td>
+
+                    <td id="id_equipos" class="bg-info" placeholder="equipos">{{mant.equipos.nombre}}</td>
+                </tr>
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_solicitante">Solicitante:</label>
+                    </td>
+
+                    <td for="id_solicitante" class="bg-info" placeholder="Solicitante">{{mant.solicitante}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_causa">Causa:</label>
+                    </td>
+
+                    <td for="id_causa" class="bg-info" placeholder="Causa">{{mant.causa}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_email">Email:</label>
+                    </td>
+
+                    <td for="id_email" class="bg-info" placeholder="Email">{{mant.correo}}</td>
+                </tr>
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_fecha">Fechas:</label>
+                    </td>
+
+                    <td for="id_fecha" class="bg-info" placeholder="fecha">{{mant.fecha}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_imagen">Imagen:</label>
+                    </td>
+                    <td>
+                    <div id="accordion">
+
+  <h3>Imagen Solicitud: </h3>
+  {% if mant.imagen %}
+                        <div>
+
+    <p>
+
+    <img  src="{{ MEDIA_URL }}/media/{{mant.imagen}}">
+    </p>
+  </div>
+                    {% else %}
+                        <p>No existe imagen para esta solicitud</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_imagen">Nº de Ot:</label>
+                    </td>
+
+                    <td for="id_ap" class="bg-info" placeholder="Numero de OT">
+                        <input aria-describedby="sizing-addon1" class="form-control" id="id_Ots" name="Ots"  value={{mant.numero_ot}} required="" type="number">
+                    </td>
+                </tr>
+
+                <tr class="bg-info">
+                <td class="bg-primary">
+                     <label for="id_aprobar">Aprobar:</label>
+                    </td>
+                <td>
+                    <div class="btn-group" data-toggle="buttons">
+                {% for radio in form.nada %}
+                    <label class="btn btn-primary">
+                        {{ radio.choice_label }}
+                    {{ radio.tag }}
+                    </label>
+                {% endfor %}
+                    </div>
+                </td>
+
+                </tr>
+            <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_causa">Comentario:</label>
+                    </td>
+
+                    <td for="id_comentario" class="bg-info" placeholder="Comentario">
+                        <textarea autofocus class="form-control" cols="40" id="id_comentario" name="comentario" placeholder="Comentarios sobre la mantención (mín 2 palabras)" rows="6"></textarea>
+                    </td>
+
+                </tr>
+            </table>
+<input type="hidden" name="url" id="urls" value="" />
+                             <div class="form-actions" id=" fbt">
+
+            <input type="button" class="btn btn-primary" onclick="uxl('{{mant.equipos.nombre}}')" id="botonS">Enviar</input>
+            <button type="button" class="btn btn-primary" target="_blanck" onclick="reportar('{{mant.equipos.nombre}}')" id="botonI">Información</button>
+
+        </div>
+        </fieldset>
+
+    </div>
+
+</form>
+
+
+</body>
+</html>
+<style type="text/css">
+
+  .btn-primary.active, .btn-primary:active{
+     color: #000;
+  background-color: #f0ff33;
+    border-color: #245580;}
+
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #000;
+  background-color: #f0ff33;
+    border-color: #245580;
+}
+  </style>
+
+
+
+
+

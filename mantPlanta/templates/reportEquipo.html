@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte por Equipo</title>
+</head>
+<body>
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="jumbotron text-center">
+  <h1>Reporte de equipo {{e}}</h1>
+  <p>Reporte de solicitud abierta de equipo {{e}}</p>
+
+</div>
+
+<table class="table">
+    <tr class="active">
+        <td class="active">Solicitante</td>
+        <td class="active">Correo</td>
+        <td class="active">User</td>
+        <td class="active"># OT</td>
+        <td class="active">Fecha</td>
+    </tr>
+    <tr class="active">
+        <td class="active">{{e.solicitante}}</td>
+        <td class="active">{{e.correo}}</td>
+        <td class="active">{{e.usuario}}</td>
+        <td class="active">{{e.numero_ot}}</td>
+        <td class="active">{{e.fecha}}</td>
+    </tr>
+
+</table>
+<h3>Causa:</h3>
+<p>{{e.causa}}</p>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+{% extends 'mantPlanta/base.html' %}
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Principal</title>
+</head>
+<body>
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+
+<div class="container">
+  <h2>Menu principal</h2>
+
+  <div class="btn-group btn-group-justified">
+    <a href="{% url  'itr' %}" class="btn btn-primary">Trozado</a>
+    <a href="#" class="btn btn-primary">Empaque</a>
+    <a href="#" class="btn btn-primary">Procesos Posteriores</a>
+  </div>
+</div>
+
+
+
+</body>
+</html>-->
+
+
+    {% block content %}
+{% load static %}
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+      $( function() {
+
+        $( "#datepicker" ).datepicker({dateFormat:'yy-mm-dd'});
+        $( "#datepickerh" ).datepicker({dateFormat:'yy-mm-dd'});
+  } );
+
+</script>
+
+
+<br>
+<br>
+
+
+
+<div class="row">
+
+  <div class="col-md-4"><img style="{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border:none;
+      }"  src="{% static "logos/sopraval.jpg" %}" height="82" width="160"/></div>
+  <div class="col-md-4"><h2 align="middle">Menu Planta</h2></div>
+  <div class="col-md-4"><img style="{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border:none;
+      }"
+       src="{% static "logos/cropped-logo4.jpg" %}" height="82" width="170"/></div>
+
+  </div>
+<br>
+<br>
+
+  <div class="btn-group btn-group-justified">
+    <a href="{% url  'pgeneral' %}" class="btn btn-primary">Faenadora</a>
+
+    <a href="{% url  'cuno' %}" class="btn btn-primary">Cecinas</a>
+    <a href="{% url  'psub' %}" class="btn btn-primary">Subproductos</a>
+
+  </div>
+<br>
+<br>
+  <div class="btn-group btn-group-justified">
+
+    <a href="{% url  'menuExt' %}" class="btn btn-primary">Exteriores</a>
+    <a href="{% url  'sprimer' %}" class="btn btn-primary">Edificio de servicios</a>
+    <a href="{% url  'pentretechos' %}" class="btn btn-primary">Entretechos</a>
+  </div>
+<br>
+<br>
+<div class="row">
+<div class="col-md-6">
+    <h3 class="text-info">Buscar por equipos:</h3>
+    <form action="/search/"  method="get" >
+
+
+    <div class="input-group">
+
+      <input  name="buscare" type="text" class="form-control" >
+      <span  class="input-group-btn">
+        <button type="submit" class="btn btn-default">Buscar</button>
+      </span>
+
+    </div>
+ {% if planta %}
+
+    <table class="table table-hover">
+<tr>
+        <tr>
+        <td>Planta</td>
+        <td>Area</td>
+    </tr>
+        <tr>
+    <td class="info">{{planta}}</td>
+
+
+        <td class="info">{{area}}</td>
+        </tr>
+</tr>
+
+    </table>
+    <a href="{% url  area %}" class="btn btn-primary">Ir a la sala</a>
+
+{% endif %}
+</div>
+        </fieldset></div>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <h3 class="text-info">Buscar por número de OT:</h3>
+    <form action="/search/"  method="get" >
+
+
+    <div class="input-group">
+
+      <input  name="buscaro" type="text" class="form-control" >
+      <span  class="input-group-btn">
+        <button type="submit" class="btn btn-default">Buscar</button>
+      </span>
+
+    </div>
+ {% if m %}
+
+    <table class="table table-hover">
+<tr>
+        <tr>
+        <td>Equipo</td>
+        <td>Nº OT</td>
+        <td>Realizada</td>
+        <td>Ir a ver</td>
+    </tr>
+        {% for mx in m %}
+        <tr>
+    <td class="info">{{mx.equipos.nombre}}</td>
+
+
+        <td class="info">{{mx.numero_ot}}</td>
+        {% if mx.realizada %}
+            <td class="info">Si</td>
+        {% else %}
+            <td class="info">No</td>
+        {% endif %}
+        <!--<td class="info"><a href= "/verSolicitudOt/{{mx.id}}" class="btn btn-primary">Ir a ver</a></td>-->
+            <form action="/search/"  method="get" >
+                <td class="info"><button name="ver" value = "{{mx.id}}" type="submit" class="btn btn-default">Ver solicitud</button></td>
+        </tr>
+
+        {% endfor %}
+
+
+</tr>
+
+    </table>
+
+{% endif %}
+</div>
+        </fieldset></div>
+
+
+<br>
+<br>
+<div class="row">
+<div class="col-md-6">
+    <h3 class="text-info">Buscar por fecha:</h3>
+
+
+    <form action="/search/"  method="get" >
+
+          <p>Desde: <input type="text" id="datepicker" name="desde"></p>
+            <p>Hasta: <input type="text" id="datepickerh" name="hasta"></p>
+        <button type="submit" class="btn btn-default" name="fechas" value="1">Buscar</button>
+    </form>
+
+ {% if mFecha %}
+
+    <table class="table table-hover">
+<tr>
+        <tr>
+        <td>Equipo</td>
+        <td>Nº OT</td>
+        <td>Realizada</td>
+        <td>Ir a ver</td>
+    </tr>
+        {% for mF in mFecha %}
+        <tr>
+    <td class="info">{{mF.equipos.nombre}}</td>
+
+
+        <td class="info">{{mF.numero_ot}}</td>
+        {% if mF.realizada %}
+            <td class="info">Si</td>
+        {% else %}
+            <td class="info">No</td>
+        {% endif %}
+        <!--<td class="info"><a href= "/verSolicitudOt/{{mx.id}}" class="btn btn-primary">Ir a ver</a></td>-->
+            <form action="/search/"  method="get" >
+                <td class="info"><button name="ver" value = "{{mF.id}}" type="submit" class="btn btn-default">Ver solicitud</button></td>
+        </tr>
+
+        {% endfor %}
+
+
+</tr>
+
+    </table>
+
+{% endif %}
+
+
+</div>
+</div>
+    <br>
+    <br>
+    <br>
+
+
+
+    {% endblock content %}
+
+.flecha-up {
+    width:0px;
+    height:0px;
+    border-left:25px solid transparent; /* izquierda flecha */
+    border-right:25px solid transparent; /* derecha flecha */
+    border-bottom:25px solid #0A0A0A; /* base flecha y color*/
+    font-size:0px;
+    line-height:0px;
+ }
+
+

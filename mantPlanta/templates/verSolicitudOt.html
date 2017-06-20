@@ -1,0 +1,64 @@
+
+{% extends "mantPlanta/baseSolicitud.html" %}
+
+{% block title %}Ver solicitud{% endblock %}
+
+ {%block h1%} Ver solicitud{% endblock %}
+
+            {% block form %}
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_realizador">Realizada Por:</label>
+                    </td>
+
+                    <td for="realizador" class="bg-info" placeholder="realizador">{{acc.realizador}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_acciones">Trabajos:</label>
+                    </td>
+
+                    <td for="accion" class="bg-info" placeholder="acciones">{{acc.accion}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_fecha_trabajo">Fecha del trabajo:</label>
+                    </td>
+
+                    <td for="fecha_trabajo" class="bg-info" placeholder="fecha trabajo">{{acc.fecha}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_imagen_trabajo">Imagen Mantención:</label>
+                    </td>
+
+                    <td for="id_imagen_trabajo" class="bg-info" placeholder="imagen trabajo">
+
+                        <img  src="{{ MEDIA_URL }}/media/{{acc.imagen}}">
+                    </td>
+                </tr>
+{% endblock %}
+
+
+
+
+{% block ext %}
+
+        <div class="form-actions">
+
+
+            <button type="button" class="btn btn-primary" target="_blanck" onclick="reportar('{{mant.equipos.nombre}}')">Información</button>
+            <a href= "{% url mant.equipos.area.nombre %}" class="btn btn-primary">Ir a plano {{mant.equipos.area.nombre}}</a>
+            <a href= "{% url 'menup' %}" class="btn btn-primary">Menu principal </a>
+
+        </div>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static "mantPlanta/jquery-ui.css" %}">
+    <script src="{% static " mantPlanta/jquery.js" %}" ></script>
+    <script src="{% static "mantPlanta/jquery-ui.js" %}"></script>
+
+
+</head>
+<body>
+
+<h1 class="text-center">{% block h1 %}{% endblock %}</h1>
+
+
+
+
+    <div class="form-group" style="max-width:800px;margin: 0 auto">
+        <fieldset>
+
+
+            <table class="table table-bordered ">
+
+<!--
+                {% if form.errors %}
+            <div class="alert alert-danger text-center" role="alert">
+                <h4 class="text-justify">
+                Por favor corrige:
+                </h4>
+                <h5 class="text-justify">
+                {{form.errors}}
+                </h5>
+            </div>
+
+            {% endif %}-->
+                <tr class="bg-info">
+
+                    <td class="bg-primary">
+                        <label>Equipos:</label>
+                    </td>
+
+                    <td id="id_equipos" class="bg-info" placeholder="equipos">{{mant.equipos.nombre}}</td>
+                </tr>
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_solicitante">Solicitante:</label>
+                    </td>
+
+                    <td for="id_solicitante" class="bg-info" placeholder="Solicitante">{{mant.solicitante}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_causa">Causa:</label>
+                    </td>
+
+                    <td for="id_causa" class="bg-info" placeholder="Causa">{{mant.causa}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_email">Email:</label>
+                    </td>
+
+                    <td for="id_email" class="bg-info" placeholder="Email">{{mant.correo}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_nOt">Numero de OT:</label>
+                    </td>
+
+                    <td for="id_nOt" class="bg-info" placeholder="Numero de OT">{{mant.numero_ot}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_fecha">Fechas:</label>
+                    </td>
+
+                    <td for="id_fecha" class="bg-info" placeholder="fecha">{{mant.fecha}}</td>
+                </tr>
+                 {% if imagen %}
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_imagen">Imagen:</label>
+                    </td>
+
+                    <td for="id_imagen" class="bg-info" placeholder="imagen">
+
+                        <img  src="{{ MEDIA_URL }}/media/{{mant.imagen}}">
+                    </td>
+                </tr>
+                {% endif %}
+{% block form %}
+{% endblock %}
+       </table>
+        </fieldset>
+
+{% block cerrar %}
+{% endblock %}
+
+{% block ext %}
+{% endblock %}
+
+
+</body>
+</html>
+
+<script>
+
+    var aReporte = document.getElementById('id_equipos');
+
+
+    function reportar(e){
+
+        var url = '/informacion/' + e;
+        document.location = url;
+
+    }
+        function uxl(e){
+
+        var x = window.location.host + '/aprobar/' + e;
+
+        var a = document.getElementById('urls');
+        a.value = x
+    }
+
+      $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+
+
+   function checkSubmit() {
+        document.getElementById("botonS").value = "Enviando...";
+        document.getElementById("botonS").disabled = true;
+        document.getElementById("botonI").disabled = true;
+        document.getElementById("botonV").onclick = "return false;";
+        return true;
+    }
+
+</script>
+

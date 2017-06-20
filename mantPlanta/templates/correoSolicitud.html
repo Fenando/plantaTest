@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud creada a equipos {{eName}}</title>
+    {% load static %}
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+
+</head>
+<body>
+
+    <h1>Solicitud para equipo {{eName}}</h1>
+    <h3 class="text-justify"> Se ha creado una solicitud al equipo <mark>{{eName}}</mark></h3>
+          {% if y %}
+          <h3> para aprobar o recharzar ingrese a: </h3>
+      <h2><a class="btn btn-primary btn-lg" href="{{url}}" role="button">Ir a la Pagina</a></h2>
+            {% else %}
+            <h3> por favor espere la respuesta a su solicitud</h3>
+          {% endif %}
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>
+
+

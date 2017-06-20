@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de Mantencion</title>
+    {% load static %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<h1 class="text-center">Solicitud de mantención</h1>
+
+
+<form enctype="multipart/form-data" method="post" onsubmit="return checkSubmit();"> {% csrf_token %}
+    <div class="form-group" style="max-width:800px;margin: 0 auto">
+        <fieldset>
+
+
+            <table class="table table-bordered ">
+
+
+                {% if form.errors %}
+            <div class="alert alert-danger text-center" role="alert">
+                <h4 class="text-justify">
+                Por favor corrige:
+                </h4>
+                <h5 class="text-justify">
+                {{form.errors}}
+                </h5>
+            </div>
+
+            {% endif %}
+                <tr class="bg-info">
+
+                    <td class="bg-primary">
+                        <label>Equipo:</label>
+                    </td>
+
+                    <td id="id_equipos" class="bg-info" placeholder="equipos">{{ei}}</td>
+                </tr>
+
+                <tr class="bg-info">
+
+                    <td class="bg-primary">
+                        <label>Tipo:</label>
+                    </td>
+
+                    <td id="id_tipo" class="bg-info" placeholder="Tipo">{{info}}</td>
+                </tr>
+
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_solicitante">Solicitante:</label>
+                    </td>
+
+                    <td for="id_solicitante" class="bg-info" placeholder="Solicitante" >{{form.solicitante}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_causa">Causa:</label>
+                    </td>
+
+                    <td for="id_causa" class="bg-info" placeholder="Causa">{{form.causa}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_email">Email:</label>
+                    </td>
+
+                    <td for="id_email" class="bg-info" placeholder="Email">{{form.email}}</td>
+                </tr>
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_nOt">Numero de OT:</label>
+                    </td>
+
+                    <td for="id_nOt" class="bg-info" placeholder="Numero de OT">{{form.nOt}}</td>
+                </tr>
+<!--                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_fecha">Fechas:</label>
+                    </td>
+
+                    <td for="id_fecha" class="bg-info" placeholder="fecha">{{form.fecha}}</td>
+                </tr>-->
+                <tr class="bg-info">
+                    <td class="bg-primary">
+                        <label for="id_imagen">Imagen:</label>
+                    </td>
+
+                    <td for="id_imagen" class="bg-info" placeholder="imagen">{{form.imagen}}</td>
+                </tr>
+
+                <input type="hidden" name="url" id="urls" value="" />
+
+            </table>
+        <div class="container" id="cb">
+
+            <button type="submit" class="btn btn-primary" onclick="uxl('{{ei}}')" id="botonS">Enviar</button>
+            <button type="button" class="btn btn-primary" target="_blanck" onclick="reportar('{{ei}}')" id="botonI">Información</button>
+            <a href= "{% url ar %}" class="btn btn-primary" id="botonV" >Volver a plano</a>
+        </div>
+        </fieldset>
+
+
+    </div>
+</form>
+<div>
+    <div class="jumbotron" style="
+border: 1px solid #eaeaea;
+border-radius: 1px;
+overflow: hidden;
+width: 60em;
+min-width: 350px;
+margin: 5px auto;
+position: relative;
+
+padding: 0;">
+  <h2 class="alert alert-success text-center">INFORMACIÓN</h2>
+
+<p class="text-center">Al dar click en "Enviar" se crea una nueva solicitud y enviará un correo a todos los entes correspondientes.
+    Esta funcionalidad se encuentra en desarrollo junto con el software.</p>
+<p class="text-center"> Al dar Click en "Información" obtendrá información técnica del equipo correspondiente.
+    </p>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+<script>
+
+    var aReporte = document.getElementById('id_equipos');
+
+
+    function reportar(e){
+
+        var url = '/informacion/' + e;
+        document.location = url;
+
+    }
+        function uxl(e){
+
+        var x = window.location.host + '/aprobar/' + e;
+
+        var a = document.getElementById('urls');
+        a.value = x
+    }
+
+    function checkSubmit() {
+        document.getElementById("botonS").value = "Enviando...";
+        document.getElementById("botonS").disabled = true;
+        document.getElementById("botonI").disabled = true;
+        document.getElementById("botonV").onclick = "return false;";
+        return true;
+    }
+
+</script>
+

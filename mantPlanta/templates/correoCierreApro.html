@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud creada a equipos {{eName}}</title>
+    {% load static %}
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+
+</head>
+<body>
+
+    <h1>Recordatorio de respuesta solicitud {{amant.id}}</h1>
+      <h3 class="text-justify">
+          Usted ha cerrado la pagina de aprobación de la solicitud {{amant.id}} correspondiente a la mantención del equipo {{amant.equipos.nombre}},
+          le recordamos ingresar al link para que responda a la brevedad</h3>
+<h2><a class="btn btn-primary btn-lg" href="{{link}}" role="button">Ir a la Pagina</a></h2>
+    <p>Si usted ya ha respondido la solicitud por favor ignore este mensaje.</p>
+
+
+
+</body>
+</html>
+
+
